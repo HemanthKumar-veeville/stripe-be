@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post("/", authMiddleware.verifyToken, orderController.createOrder);
 router.get("/", authMiddleware.verifyToken, orderController.getOrders);
+router.get("/me", authMiddleware.verifyToken, orderController.getMyOrders);
+router.get("/all", authMiddleware.verifyToken, orderController.getAllOrders);
 router.get(
   "/:orderId",
   authMiddleware.verifyToken,

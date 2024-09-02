@@ -4,7 +4,7 @@ const { User } = require("../models");
 const tokenBlacklistService = require("./tokenBlacklistService");
 
 exports.register = async (userData) => {
-  const { email, password, role } = userData;
+  const { name, email, password, role } = userData;
   const existingUser = await User.findOne({ where: { email } });
   if (existingUser) {
     throw new Error("Email already exists");
@@ -15,6 +15,7 @@ exports.register = async (userData) => {
     email,
     password: hashedPassword,
     role,
+    name,
   });
 
   return {
@@ -45,7 +46,7 @@ exports.login = async (loginData) => {
     }
   );
 
-  return token;
+  return { user, token };
 };
 
 exports.logout = async (user, token) => {

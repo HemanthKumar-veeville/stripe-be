@@ -18,6 +18,24 @@ exports.getOrders = async (req, res, next) => {
   }
 };
 
+exports.getMyOrders = async (req, res, next) => {
+  try {
+    const orders = await orderService.getMyOrders(req.user);
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getAllOrders = async (req, res, next) => {
+  try {
+    const orders = await orderService.getAllOrders(req.user);
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.getOrderById = async (req, res, next) => {
   try {
     const order = await orderService.getOrderById(req.params.orderId, req.user);

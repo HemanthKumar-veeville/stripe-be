@@ -11,6 +11,7 @@ const orderRoutes = require("./routes/orderRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const supportRoutes = require("./routes/supportRoutes");
 const userRoutes = require("./routes/userRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
 
 const errorHandler = require("./middleware/errorHandler");
 
@@ -31,6 +32,7 @@ app.use("/orders", orderRoutes);
 app.use("/reviews", reviewRoutes);
 app.use("/support", supportRoutes);
 app.use("/users", userRoutes);
+app.use("/payments", paymentRoutes);
 
 // Error handling middleware
 app.use(errorHandler);

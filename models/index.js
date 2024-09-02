@@ -14,8 +14,8 @@ Notification.belongsTo(User, { foreignKey: "userId" });
 User.hasMany(Deal, { foreignKey: "organizerId" });
 Deal.belongsTo(User, { foreignKey: "organizerId" });
 
-User.hasMany(Order, { foreignKey: "customerId" });
-Order.belongsTo(User, { foreignKey: "customerId" });
+User.hasMany(Order, { foreignKey: "userId" });
+Order.belongsTo(User, { foreignKey: "userId" });
 
 User.hasMany(Message, { foreignKey: "senderId" });
 Message.belongsTo(User, { foreignKey: "senderId" });
