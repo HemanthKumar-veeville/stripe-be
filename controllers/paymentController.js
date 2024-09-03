@@ -23,3 +23,16 @@ exports.chargeSavedMethod = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.updatePaymentStatusForAllOrders = async (req, res) => {
+  try {
+    const { dealId } = req.body;
+    const paymentIntent = await paymentService.updatePaymentStatusForAllOrders(
+      dealId
+    );
+    console.log("Payment intent:", paymentIntent);
+    res.status(200).json({ success: true, paymentIntent });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

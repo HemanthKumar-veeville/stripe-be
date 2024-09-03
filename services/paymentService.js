@@ -115,10 +115,12 @@ exports.chargeGroupFromOrders = async (dealId) => {
   }
 };
 
-exports.updatePaymentStatusForAllOrders = async () => {
+exports.updatePaymentStatusForAllOrders = async (dealId) => {
   try {
     // Retrieve all orders from the database
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({
+      where: { dealId },
+    });
 
     for (const order of orders) {
       const { paymentIntentId } = order;
@@ -137,6 +139,7 @@ exports.updatePaymentStatusForAllOrders = async () => {
       // Update the order with the latest payment intent and payment status
       await order.update({
         paymentIntent: paymentIntent,
+        isPaid: paymentIntent.status === "succeeded",
       });
 
       console.log(
