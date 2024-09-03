@@ -53,7 +53,7 @@ exports.getMyOrders = async (user) => {
         },
         {
           model: Deal,
-          attributes: ["name"], // Assuming 'name' is the field you want to include
+          attributes: ["name", "id"], // Assuming 'name' is the field you want to include
         },
       ],
     });
